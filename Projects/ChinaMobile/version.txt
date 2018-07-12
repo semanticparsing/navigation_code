@@ -1,0 +1,205 @@
+[V_20171126.0]
+1.测试通过稳定版本
+
+[仓库版本号]
+a0c87be44dc251b55e9788f71718e905389e87ea
+
+---------------------------------------------------------------
+[V_20171127.0]
+1.修改nlg模板，为讯飞增加数字标识符
+
+[涉及更新文件]
+1.nlg_rel.templ
+2.china_mobile_crs_server
+
+[仓库版本号]
+bd262635dfc8f8caca0079c02018618067b5ab39
+
+[分支名称]
+Prod20171127
+
+---------------------------------------------------------------
+[V_20171205.0]
+1.修改重听业务流程
+2.优化日志处理流程，修正挂机报文交互异常时非法调用CSF接口问题
+3.根据新版话术模板，修改TTS及下发短信内容
+
+[涉及更新文件]
+1.nlg_rel.templ
+2.china_mobile_crs_server
+
+[仓库版本号]
+ca214a0440dcf47bc146dc6067534c12734b7e29
+
+[分支名称]
+Prod_ChinaMobile_20171205
+
+---------------------------------------------------------------
+[V_20171213.0]
+1.修改一期业务的bug
+2.增加二期业务流程
+3.增加flume日志字段
+
+[涉及更新文件]
+1 .Release/Project/ChinaMobile/Bin/china_mobile_crs_server
+2 .Release/Project/ChinaMobile/Data/Grammer/base.dic
+3 .Release/Project/ChinaMobile/Data/Grammer/chinamobile.net
+4 .Release/Project/ChinaMobile/Data/TaskFlow/Config/Config_two.json
+5 .Release/Project/ChinaMobile/Data/TaskFlow/Config/nlg_rel.templ
+6 .Release/Project/ChinaMobile/Shell/CRS.sh
+7 .Release/Project/ChinaMobile/Config/config.ini(生产环境版本不正确，与本地同步)
+8 .TrioApi/Brain/index.php
+9 .esFAQ : faq_chinamobile/input.txt
+10.esFAQ : faq_word_table/faq_word_table.src.txt
+
+[仓库版本号]
+73bf7fa99fed1e29417b2884d28823973f7fc79c
+
+[分支名称]
+Prod_ChinaMobile_20171213
+
+---------------------------------------------------------------
+[V_20180105.0]
+1.修改一、二期业务的bug
+2.增加三期业务流程(除4G飞享套餐相关业务)
+3.增加挂机业务
+4.增加金额流量选择相关的2个业务
+5.增加密码查询业务
+
+[涉及更新文件]
+1 .Release/Project/ChinaMobile/Bin/china_mobile_crs_server
+2 .Release/Project/ChinaMobile/Bin/NLU_server
+3 .Release/Project/ChinaMobile/Data/Grammer/base.dic
+4 .Release/Project/ChinaMobile/Data/Grammer/chinamobile.net
+5 .Release/Project/ChinaMobile/Data/TaskFlow/Config/Config.json
+6 .Release/Project/ChinaMobile/Data/TaskFlow/Config/nlg_rel.templ
+7 .Release/Project/ChinaMobile/Shell/CRS.sh
+8 .Release/Project/ChinaMobile/Config/config.ini
+9 .esFAQ : faq_chinamobile/input.txt
+10.esFAQ : faq_word_table/faq_word_table.src.txt
+11.Faq服务更新
+
+[仓库版本号]
+831e075116c71ff1c76421b2681e9544291bacbd
+
+[分支名称]
+Prod_ChinaMobile_20180105
+
+---------------------------------------------------------------
+[V_20180111.0]
+1.修改二期业务的1个bug(身份证尾号带X的手机密码重置)
+2.修改二期业务流程，包含基础流量包开通、30元基础流量包开通等8项业务
+3.更新4G飞享套餐相关Session逻辑，但此业务未上线，所以线上不会体现
+4.变更Session通话开始时间默认值为系统时间，避免对应的flume日志出现空值
+
+[涉及更新文件]
+1 .Release/Project/ChinaMobile/Bin/china_mobile_crs_server
+2 .Release/Project/ChinaMobile/Data/Grammer/base.dic
+3 .Release/Project/ChinaMobile/Data/Grammer/chinamobile.net
+4 .Release/Project/ChinaMobile/Data/TaskFlow/Config/nlg_rel.templ
+5 .esFAQ : faq_chinamobile/input.txt
+6 .esFAQ : faq_word_table/faq_word_table.src.txt
+
+[仓库版本号]
+1f4e411690dacf18466946fa64ded27be877e970
+
+[分支名称]
+Prod_ChinaMobile_20180111
+
+---------------------------------------------------------------
+[V_20180130.0]
+1.涉及伪接口的业务进行关闭处理，均设置为集外业务
+2.修改金额流量选择时候,多域语料"不需要"引发的系统繁忙
+3.密码修改成功下发短信内容修改
+4.办理失败短信内容修改,"语音导航"修改为"智能语音客服",相关业务关闭处理,所以线上不会体现
+
+[涉及更新文件]
+1 .Release/Project/ChinaMobile/Bin/china_mobile_crs_server
+2 .Release/Project/ChinaMobile/Bin/NLU_server
+3 .Release/Project/ChinaMobile/Data/Grammer/base.dic
+4 .Release/Project/ChinaMobile/Data/Grammer/chinamobile.net
+5 .Release/Project/ChinaMobile/Data/TaskFlow/Config/nlg_rel.templ
+6 .Release/Project/ChinaMobile/Data/TaskFlow/Config/Config_four.json
+7 .Release/Project/ChinaMobile/Shell/CRS.sh
+8 .Release/Project/ChinaMobile/Shell/NLU.sh
+9 .esFAQ : faq_chinamobile/input.txt
+10.esFAQ : faq_word_table/faq_word_table.src.txt
+11.FAQ : brainServer
+
+[仓库版本号]
+bf08655f58b35d17279ed3e73da1ad67a1cce64e
+
+[分支名称]
+Prod_ChinaMobile_20180130
+
+---------------------------------------------------------------
+[V_20180322.0]
+1. sd001余额查询:增加”余额是否低于10元“的判断
+2. sd003本机业务查询:优化下发短信内容
+3. sd016手机密码重置:新增sd01703密码二次确认流程
+4. sd023宽带预约:新增提示音节点sd023_01，添加判断“是否为夜间时间”并新增提示音节点sd023_02
+5. sd02603宽带新密码二次确认:将sd0260302提示音删除
+6. sd027手机充值/sd028银行卡充值/sd029充值卡充值:删除“是否欠费停机”的判断，停机客户直接进入转IVR确认流程, 优化提示音和短信下发内容
+7. sd002账单查询/sd004月初扣费查询/sd006套餐剩余量查询:删除提示音
+8. sd00201账单查询播报:优化sd00201_tts01、sd00201_tts02提示音
+9. sd010充值缴费记录查询:金额为0和负数的提示音和短信内容不提供
+10.sd021 4G融合宽带介绍:优化sd021_01提示音和短信内容
+11."详单"作为集外处理,不再识别为账单查询
+12.短信增加网页和公众号推广内容
+13.优化FAQ
+
+[涉及更新文件]
+1 .Release/Project/ChinaMobile/Bin/china_mobile_crs_server
+2 .Release/Project/ChinaMobile/Bin/NLU_server
+3 .Release/Project/ChinaMobile/Data/Grammer/base.dic
+4 .Release/Project/ChinaMobile/Data/Grammer/chinamobile.net
+5 .Release/Project/ChinaMobile/Data/TaskFlow/Config/nlg_rel.templ
+6 .esFAQ : faq_chinamobile/input.txt
+7 .esFAQ : faq_word_table/faq_word_table.src.txt
+8 .PHP:针对”MGPRS“的播报进行转化"兆 GPRS"
+
+[仓库版本号]
+6bc3be3a42d7350eeb0e1f938311e1e7f01b59fb
+
+[分支名称]
+Prod_ChinaMobile_20180322
+
+---------------------------------------------------------------
+[V_20180419.0]
+1. 优化集外提示音，并对部分内容设置随机播报
+2. sd001余额查询/sd007流量剩余查询:添加4月17-26日版本营销活动。短信会包含活动内容
+3. 将sd044流量业务:停机判断删除
+4. sd04602流量包取消确认:基础流量包及夜间流量包取消接sd0460201a;周末流量包接sd0460201b
+5. sd053 10元流量包取消/sd054 20元流量包取消:业务流程下线
+6. sd05701~sd07501的各个开通确认流程:内容提示音设为不可打断的,新增可打断“确认”节点
+7. sd027手机充值/sd028银行卡充值/sd029充值卡充值:修改跳转IVR层级
+8. sd047基础流量包取消:流程中添加“是否开通一个”基础流量包的判断
+9. sd071~sd075短时流量包开通流程:流程中新增开通GPRS提示音
+10.sd04601流量取消选择:播报相关流量内容修改为动态提示音
+11.sd04701基础流量包取消选择:新增流程
+12.sd04501 GPRS功能开通确认:新增可打断提示音,优化办理成功下发的短信内容
+13.sd04602流量包取消确认:新增可打断提示音
+14.sd018宽带业务:保留槽位[broadband_type]
+15.主菜单相关提示音更名,前缀添加“sd_”
+16.优化FAQ:"好的不用了"多域处理主菜单挂机/其他流程返回,修复"再说一遍"为重听等
+17.flume出口维表ID修改为与山东总部提供的一致
+18.调整flume调用接口log的等级,使调用CSF接口耗时输出到log中
+19.sd001余额查询/sd007流量剩余查询:营销活动电话的信息内容输出到log中,便于营销活动统计。
+
+[涉及更新文件]
+1 .Release/Project/ChinaMobile/Bin/china_mobile_crs_server
+2 .Release/Project/ChinaMobile/Bin/NLU_server
+3 .Release/Project/ChinaMobile/Config/config.ini
+3 .Release/Project/ChinaMobile/Data/Grammer/base.dic
+4 .Release/Project/ChinaMobile/Data/Grammer/chinamobile.net
+5 .Release/Project/ChinaMobile/Data/TaskFlow/Config/Config.json
+5 .Release/Project/ChinaMobile/Data/TaskFlow/Config/nlg_rel.templ
+5 .Release/Project/ChinaMobile/Shell/CRS.sh
+6 .esFAQ : faq_chinamobile/input.txt
+7 .esFAQ : faq_word_table/faq_word_table.src.txt
+
+[仓库版本号]
+a19f82baec4072558f913bc4e5e80ace8056aadf
+
+[分支名称]
+Prod_ChinaMobile_20180419

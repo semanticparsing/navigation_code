@@ -1,0 +1,32 @@
+package robot;
+import "Robot/Public/Proto/common.proto";
+message IntentThreshold {
+  required FeatureDomain  domain          = 1;
+  required double         threshold_lower = 2;
+  required double         threshold_upper = 3;
+  required double         thres_upper_buf = 4;
+}
+
+message SpecialQuery {
+  enum Semantic {
+    UNKNOWN       = 0;
+    REPLACE_BATCH = 1;
+  }
+  required Semantic       semantic          = 1;
+  repeated FeatureDomain  candidate_domains = 2;
+}
+
+message IntentSelectionConfig {
+  repeated IntentThreshold intent  = 1;
+}
+
+message QueryParserConfig {
+  required string         parser_data_path  = 1;
+  required string         parser_dic_file   = 2;
+  required string         parser_net_file   = 3;
+  required string         parser_frame_file = 4;
+  required string         parser_tree_files = 5;
+  required string         parser_sos        = 6;
+  required string         parser_eos        = 7;
+  repeated SpecialQuery   special_querys    = 8;
+}

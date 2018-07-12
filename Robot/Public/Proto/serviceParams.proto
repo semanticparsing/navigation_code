@@ -1,0 +1,88 @@
+package robot;
+
+message WordFilterParams {
+  enum ModuleType {
+    QUERY     = 0;
+    REPLY     = 1;
+    POSTREPLY = 2;
+  };
+  enum PolicyType {
+    QUERY_CHAT        = 0; // default for query module
+    REPLY_CHAT        = 1; // default for reply module
+    POSTREPLY_CHAT    = 2; // default for postreply module
+    QUERY_CHAT_CHILD  = 3;
+    REPLY_CHAT_CHILD  = 4;
+    QUERY_CHAT_POLITICALRELAX = 5;
+  };
+  message PolicyInfo { // use default policy type for module if not here
+      optional ModuleType module = 1;
+      optional PolicyType policy = 2;
+  }
+  repeated PolicyInfo policies = 1;
+  optional string default_reply = 2 [default = "default"];
+  optional string white_category = 3 [default = "default"];
+}
+
+message FaqParams {
+  required string es_index = 1;
+  optional bool compare_mode = 2 [default = false];
+  optional int32 suggest_count = 3 [default = 5];
+  optional int32 recall_count = 4 [default = 30];
+  optional bool detail_info = 5 [default = false];
+  optional bool enable_faq_redux = 6 [default = true];
+  optional string default_reply = 7 [default = "请换一种方式描述您的问题。"];
+  optional double best_reply_threshold = 8 [default = 0.7];
+  optional double suggest_reply_threshold = 9 [default = 0.6];
+  optional string dynamic_suggest_threshold = 10;
+}
+
+message KBParams {
+  optional string es_kb_index = 1 [default = "knowledge"];
+  optional  bool reply_no_title = 2 [default = false];
+  optional bool reply_no_link = 3 [default = true];
+  optional string confident_default_reply = 4 [default = ""];
+  optional int32 reply_length_limit = 5 [default = 1024];
+  optional bool short_intro = 6 [default = false];
+  optional bool random_histoday = 7 [default = false];
+  optional bool short_result = 8 [default = false];
+  optional bool short_histoday = 9 [default = false];
+  optional bool kbtv = 10 [default = false];
+  optional string triggerkb_for_entity = 11 [default = "people:true^video:false"];
+  optional bool triggerkb_for_nomatch = 12 [default = false];
+  optional bool weibo_style = 13 [default = false];
+  optional string domain_white_list = 14 [default = "people:true^video:true^histoday:true^horoscope:true"];
+}
+
+message BrainParams {
+  repeated string support_reqtypes = 1;
+  optional string chat_botname = 2 [default = "trio_xiaoshou"];
+  optional string kb_botname = 3 [default = "trio_xiaoshou"];
+}
+
+message MusicParams {
+  optional bool include_no_copyright = 1 [default = true];
+}
+
+message NewsParams {
+  optional bool enable_tts = 1 [default = true];
+  optional bool enable_qingting = 2 [default = false];
+  optional bool enable_leting = 3 [default = false];
+}
+
+message ServiceParams {
+  optional bool random_reply = 1 [default = true];
+  optional bool generative = 2 [default = false];
+  optional WordFilterParams word_filter = 3;
+  optional string bot_nickname = 4;
+  optional string user_nickname = 5;
+  optional int32 reply_num = 6 [default = 1];
+  optional bool special_hot_query = 7 [default = false];
+  optional bool default_sys_profile = 8 [default = false];
+  optional bool encyclopedia_enable = 9 [default = true];
+  optional FaqParams faq_params = 10;
+  optional BrainParams brain_params = 11;
+  optional KBParams kb_params = 12;
+  optional MusicParams music_params = 13;
+  optional NewsParams news_params = 14;
+}
+

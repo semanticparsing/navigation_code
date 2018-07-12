@@ -1,0 +1,72 @@
+package robot.log;
+
+message RespApiCustom {
+    optional string key = 1;
+    optional string value = 2;
+    optional string info = 3;
+}
+
+message RespApiReply {
+    optional string content = 1 [default = ""];
+    optional double score = 2;
+    optional string tts_text = 3;
+    optional string emotion = 4;
+    optional double emotion_score = 5;
+    optional string audio = 6;
+    optional string video = 7;
+    optional string image = 8;
+    optional string url = 9;
+    optional string action = 10;
+    repeated RespApiCustom custom_info = 11;
+}
+
+message RespApiResult {
+    optional RespApiReply reply = 1;
+    optional RespApiReply proactive_reply = 2;
+}
+
+message RespApiData {
+    optional string intent = 1 [default = ""];
+    optional double intent_score = 2 [default = 0.0];
+    optional int32 terminal = 3;
+    repeated RespApiResult results = 4;
+    repeated RespApiCustom custom_info = 5;
+}
+
+message RespApiParams {
+  optional int32 status = 1 [default = 0]; // 0 成功  -1 错误
+  optional string msg = 2;
+  optional string callback_msg = 3;
+  repeated RespApiData data = 4;
+}
+
+message Location {
+    optional string country = 1;
+    optional string province = 2;
+    optional string city = 3;
+    optional string district = 4;
+    optional string street = 5;
+    optional string address = 6;
+}
+
+message UserInfo {
+    optional string uid = 1;
+    optional int32 platform = 2;
+    optional string bot_name = 3;
+    optional Location location = 4;
+    optional string session_id = 5;
+}
+
+message LogMessage {
+    optional string qid = 1; // query的唯一id，可以由query+user+query_time生成
+    optional string query = 2;
+    optional string query_time = 3;
+    optional UserInfo user = 4;
+    optional string reply_time = 5;
+	optional RespApiParams response = 7;
+	repeated RespApiCustom custom_info = 8;
+}
+
+message LogParams {
+	optional LogMessage log = 1;
+}

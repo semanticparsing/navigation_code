@@ -1,0 +1,206 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AVAILABLE	DialogTask.h	234;"	d
+BINDING_FILTER	DialogTask.h	97;"	d
+BOOL_ITEM	DialogTask.h	108;"	d
+BOOL_SYSTEM_CONCEPT	DialogTask.h	119;"	d
+BOOL_USER_CONCEPT	DialogTask.h	207;"	d
+CERTIFICATE_LENGTH	TaskSpecification/TSCertificateVerification.cpp	10;"	d	file:
+CLEAR	DialogTask.h	249;"	d
+CLEAR_ROOT_LAST_UPDATE_CONCEPT	DialogTask.h	136;"	d
+COMPLETED	DialogTask.h	217;"	d
+CORE_CONFIGURATION	DialogTask.h	30;"	d
+CUSTOM_ITEM	DialogTask.h	114;"	d
+CUSTOM_START_OVER	DialogTask.h	101;"	d
+CUSTOM_SYSTEM_CONCEPT	DialogTask.h	122;"	d
+CUSTOM_USER_CONCEPT	DialogTask.h	213;"	d
+DEFAULT_OUTPUT_DEVICE	DialogTask.h	46;"	d
+DEFINE_CONFIDENCE_SLOTNAME	DialogTask.h	35;"	d
+DMSERVER_CONFIGURATION	DialogTask.h	24;"	d
+FAILED	DialogTask.h	219;"	d
+FAILS_WHEN_NOT_CURRENT_MAIN_TOPIC	DialogTask.h	188;"	d
+FIFTH_SKIP_NT_MAIN_2	DialogTask.h	22;"	d
+FINISH	DialogTask.h	227;"	d
+FLOAT_ITEM	DialogTask.h	112;"	d
+FLOAT_SYSTEM_CONCEPT	DialogTask.h	121;"	d
+FLOAT_USER_CONCEPT	DialogTask.h	211;"	d
+GROUNDING_ACTION	DialogTask.h	87;"	d
+GROUNDING_MODEL_TYPE	DialogTask.h	79;"	d
+HAS_HISTORY	DialogTask.h	241;"	d
+INT_ITEM	DialogTask.h	106;"	d
+INT_SYSTEM_CONCEPT	DialogTask.h	118;"	d
+INT_USER_CONCEPT	DialogTask.h	205;"	d
+INVALIDATED	DialogTask.h	238;"	d
+IS_ACTIVE_TOPIC	DialogTask.h	222;"	d
+IS_ERROR	DialogTask.h	151;"	d
+IS_FALSE	DialogTask.h	240;"	d
+IS_FOCUSED	DialogTask.h	223;"	d
+IS_TRUE	DialogTask.h	239;"	d
+InitDialogTaskOnBeginSession	DialogTask.cpp	/^bool InitDialogTaskOnBeginSession() {$/;"	f	namespace:TrioTDM
+LIBRARY_AGENT	DialogTask.h	59;"	d
+NOT_UPDATED	DialogTask.h	237;"	d
+NT_MAIN_AGENCY	TaskSpecification/TSPrimaryMenu.cpp	127;"	d	file:
+OUTPUT_DEVICE	DialogTask.h	43;"	d
+PARENT_COMPLETION_ON_COMPLETION	DialogTask.h	182;"	d
+REOPEN_AGENT	DialogTask.h	230;"	d
+REOPEN_CONCEPT	DialogTask.h	247;"	d
+REOPEN_ON_COMPLETION	DialogTask.h	180;"	d
+REOPEN_TOPIC	DialogTask.h	231;"	d
+RESET_AGENT	DialogTask.h	229;"	d
+RESET_CLEAR_ROOT_CONCEPTS	DialogTask.h	162;"	d
+RESET_ON_COMPLETION	DialogTask.h	176;"	d
+RESTORE_CONCEPT	DialogTask.h	248;"	d
+RegisterAllTaskSpecificationAgents	TaskSpecification/AllTaskSpecifications.cpp	/^void RegisterAllTaskSpecificationAgents() {$/;"	f	namespace:TrioTDM
+RegisterBalanceInquiry	TaskSpecification/TSBalanceInquiry.cpp	/^void RegisterBalanceInquiry() {$/;"	f	namespace:TrioTDM
+RegisterCertificateVerification	TaskSpecification/TSCertificateVerification.cpp	/^void RegisterCertificateVerification() {$/;"	f	namespace:TrioTDM
+RegisterCommonAgent	TaskSpecification/TSCommonAgent.cpp	/^void RegisterCommonAgent() {$/;"	f	namespace:TrioTDM
+RegisterErrorHandle	TaskSpecification/TSErrorHandle.cpp	/^void RegisterErrorHandle() {$/;"	f	namespace:TrioTDM
+RegisterHelpAgent	TaskSpecification/TSHelp.cpp	/^void RegisterHelpAgent() {$/;"	f	namespace:TrioTDM
+RegisterModifyPasswordOfWideBand	TaskSpecification/TSModifyPasswordOfWideBand.cpp	/^void RegisterModifyPasswordOfWideBand() {$/;"	f	namespace:TrioTDM
+RegisterNewPasswordInput	TaskSpecification/TSNewPasswordInput.cpp	/^void RegisterNewPasswordInput() {$/;"	f	namespace:TrioTDM
+RegisterNonOnlineBusiness	TaskSpecification/TSNonOnlineBusiness.cpp	/^void RegisterNonOnlineBusiness() {$/;"	f	namespace:TrioTDM
+RegisterNtMain	TaskSpecification/TSPrimaryMenu.cpp	/^void RegisterNtMain() {$/;"	f	namespace:TrioTDM
+RegisterOpenedBusinessInquiry	TaskSpecification/TSOpenedBusinessInquiry.cpp	/^void RegisterOpenedBusinessInquiry() {$/;"	f	namespace:TrioTDM
+RegisterOppugnPackage	TaskSpecification/Oppugn/TSOppugnPackage.cpp	/^void RegisterOppugnPackage() {$/;"	f	namespace:TrioTDM
+RegisterOriginalPasswordVerification	TaskSpecification/TSOriginalPasswordVerification.cpp	/^void RegisterOriginalPasswordVerification() {$/;"	f	namespace:TrioTDM
+RegisterOtherMean	TaskSpecification/TSOtherMean.cpp	/^void RegisterOtherMean() {$/;"	f	namespace:TrioTDM
+RegisterOutOfServiceJudge	TaskSpecification/TSOutOfServiceJudge.cpp	/^void RegisterOutOfServiceJudge() {$/;"	f	namespace:TrioTDM
+RegisterPasswordDoubleConfirm	TaskSpecification/TSPasswordDoubleConfirm.cpp	/^void RegisterPasswordDoubleConfirm() {$/;"	f	namespace:TrioTDM
+RegisterPrimaryMenu	TaskSpecification/TSPrimaryMenu.cpp	/^void RegisterPrimaryMenu() {$/;"	f	namespace:TrioTDM
+RegisterRechargeBill	TaskSpecification/TSRechargeBill.cpp	/^void RegisterRechargeBill() {$/;"	f	namespace:TrioTDM
+RegisterRecuperate	TaskSpecification/TSRecuperate.cpp	/^void RegisterRecuperate() {$/;"	f	namespace:TrioTDM
+RegisterRemainingTalkMinutesInquiry	TaskSpecification/TSRemainingTalkMinutesInquiry.cpp	/^void RegisterRemainingTalkMinutesInquiry() {$/;"	f	namespace:TrioTDM
+RegisterRemainingTrafficInquiry	TaskSpecification/TSRemainingTrafficInquiry.cpp	/^void RegisterRemainingTrafficInquiry() {$/;"	f	namespace:TrioTDM
+RegisterRepeatAgent	TaskSpecification/TSRepeat.cpp	/^void RegisterRepeatAgent() {$/;"	f	namespace:TrioTDM
+RegisterSendMsg	TaskSpecification/TSSendMsg.cpp	/^void RegisterSendMsg() {$/;"	f	namespace:TrioTDM
+RegisterSystemException	TaskSpecification/TSSystemException.cpp	/^void RegisterSystemException() {$/;"	f	namespace:TrioTDM
+RegisterTaskFlowRoot	TaskSpecification/TaskFlowRoot.cpp	/^void RegisterTaskFlowRoot() {$/;"	f	namespace:TrioTDM
+RegisterTelephonePasswordModify	TaskSpecification/TSTelephonePasswordModify.cpp	/^void RegisterTelephonePasswordModify() {$/;"	f	namespace:TrioTDM
+RegisterTelephonePasswordReset	TaskSpecification/TSTelephonePasswordReset.cpp	/^void RegisterTelephonePasswordReset() {$/;"	f	namespace:TrioTDM
+RegisterTrasferArtificial	TaskSpecification/TSTrasferArtificial.cpp	/^void RegisterTrasferArtificial() {$/;"	f	namespace:TrioTDM
+RegisterTrasferArtificialConfirm	TaskSpecification/TSTrasferArtificialConfirm.cpp	/^void RegisterTrasferArtificialConfirm() {$/;"	f	namespace:TrioTDM
+RegisterTrasferIVR	TaskSpecification/TSTrasferIVR.cpp	/^void RegisterTrasferIVR() {$/;"	f	namespace:TrioTDM
+RegisterWelcome	TaskSpecification/TSWelcome.cpp	/^void RegisterWelcome() {$/;"	f	namespace:TrioTDM
+SECOND_SKIP_NT_MAIN_3	DialogTask.h	21;"	d
+SET_COMPLETED	DialogTask.h	226;"	d
+SIZE	DialogTask.h	250;"	d
+SKIP_NT_MAIN	TaskSpecification/TSPrimaryMenu.cpp	154;"	d	file:
+STRING_ITEM	DialogTask.h	110;"	d
+STRING_SYSTEM_CONCEPT	DialogTask.h	120;"	d
+STRING_USER_CONCEPT	DialogTask.h	209;"	d
+SUCCEEDED	DialogTask.h	220;"	d
+THIRD_SEND_SMS_TO_NT_MAIN_3	DialogTask.h	20;"	d
+THIRD_TO_NT_MAIN_12	DialogTask.h	19;"	d
+THIRD_TO_NT_MAIN_2	DialogTask.h	18;"	d
+TRIGGER_NO_UNDERSTAND	DialogTask.h	124;"	d
+TRIGGER_NO_UNDERSTAND_AND_CLEAR_UPDATE_CONCEPT	DialogTask.h	147;"	d
+TURNS_SINCE_LAST_UPDATED	DialogTask.h	242;"	d
+TrioTDM	DialogTask.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	DialogTask.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/AllTaskSpecifications.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/AllTaskSpecifications.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/Oppugn/TSOppugnPackage.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/Oppugn/TSOppugnPackage.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSBalanceInquiry.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSBalanceInquiry.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSCertificateVerification.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSCertificateVerification.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSCommonAgent.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSCommonAgent.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSErrorHandle.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSErrorHandle.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSHelp.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSHelp.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSModifyPasswordOfWideBand.cpp	/^namespace TrioTDM{$/;"	n	file:
+TrioTDM	TaskSpecification/TSModifyPasswordOfWideBand.h	/^namespace TrioTDM{$/;"	n
+TrioTDM	TaskSpecification/TSNewPasswordInput.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSNewPasswordInput.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSNonOnlineBusiness.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSNonOnlineBusiness.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSOpenedBusinessInquiry.cpp	/^namespace TrioTDM{$/;"	n	file:
+TrioTDM	TaskSpecification/TSOpenedBusinessInquiry.h	/^namespace TrioTDM{$/;"	n
+TrioTDM	TaskSpecification/TSOriginalPasswordVerification.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSOriginalPasswordVerification.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSOtherMean.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSOtherMean.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSOutOfServiceJudge.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSOutOfServiceJudge.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSPasswordDoubleConfirm.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSPasswordDoubleConfirm.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSPrimaryMenu.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSPrimaryMenu.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSRechargeBill.cpp	/^namespace TrioTDM{$/;"	n	file:
+TrioTDM	TaskSpecification/TSRechargeBill.h	/^namespace TrioTDM{$/;"	n
+TrioTDM	TaskSpecification/TSRecuperate.cpp	/^namespace TrioTDM{$/;"	n	file:
+TrioTDM	TaskSpecification/TSRecuperate.h	/^namespace TrioTDM{$/;"	n
+TrioTDM	TaskSpecification/TSRemainingTalkMinutesInquiry.cpp	/^namespace TrioTDM{$/;"	n	file:
+TrioTDM	TaskSpecification/TSRemainingTalkMinutesInquiry.h	/^namespace TrioTDM{$/;"	n
+TrioTDM	TaskSpecification/TSRemainingTrafficInquiry.cpp	/^namespace TrioTDM{$/;"	n	file:
+TrioTDM	TaskSpecification/TSRemainingTrafficInquiry.h	/^namespace TrioTDM{$/;"	n
+TrioTDM	TaskSpecification/TSRepeat.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSRepeat.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSSendMsg.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSSendMsg.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSSystemException.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSSystemException.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSTelephonePasswordModify.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSTelephonePasswordModify.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSTelephonePasswordReset.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSTelephonePasswordReset.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSTrasferArtificial.cpp	/^namespace TrioTDM{$/;"	n	file:
+TrioTDM	TaskSpecification/TSTrasferArtificial.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSTrasferArtificialConfirm.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSTrasferArtificialConfirm.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TSTrasferIVR.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSTrasferIVR.h	/^namespace TrioTDM{$/;"	n
+TrioTDM	TaskSpecification/TSWelcome.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TSWelcome.h	/^namespace TrioTDM {$/;"	n
+TrioTDM	TaskSpecification/TaskFlowRoot.cpp	/^namespace TrioTDM {$/;"	n	file:
+TrioTDM	TaskSpecification/TaskFlowRoot.h	/^namespace TrioTDM {$/;"	n
+UNAVAILABLE	DialogTask.h	235;"	d
+UPDATED	DialogTask.h	236;"	d
+UPDATED_IN_LAST_TURN	DialogTask.h	243;"	d
+UPDATED_IN_PENULTIMATE_TURN	DialogTask.h	244;"	d
+USE_ALL_GROUNDING_ACTIONS	DialogTask.h	83;"	d
+USE_ALL_GROUNDING_MODEL_TYPES	DialogTask.h	75;"	d
+USE_BINDING_FILTERS	DialogTask.h	91;"	d
+USE_GROUNDING_ACTIONS	DialogTask.h	69;"	d
+USE_GROUNDING_MODEL_TYPES	DialogTask.h	63;"	d
+USE_LIBRARY_AGENTS	DialogTask.h	53;"	d
+USE_OUTPUT_CLASS	DialogTask.h	50;"	d
+USE_OUTPUT_DEVICES	DialogTask.h	38;"	d
+_ALL_TASK_SPECIFICATIONS_H__	TaskSpecification/AllTaskSpecifications.h	7;"	d
+_DA_HELP_H__	TaskSpecification/TSHelp.h	7;"	d
+_DA_REPEAT_H__	TaskSpecification/TSRepeat.h	7;"	d
+_DIALOG_TASK_H__	DialogTask.h	7;"	d
+_TASK_FLOW_ROOT_H__	TaskSpecification/TaskFlowRoot.h	7;"	d
+_TS_BALANCE_INQUIRY_H__	TaskSpecification/TSBalanceInquiry.h	8;"	d
+_TS_CERTIFICATE_VERIFICATION_H__	TaskSpecification/TSCertificateVerification.h	7;"	d
+_TS_COMMON_AGENT_H__	TaskSpecification/TSCommonAgent.h	7;"	d
+_TS_ERROR_HANDLE_H__	TaskSpecification/TSErrorHandle.h	7;"	d
+_TS_MODIFY_PASSWORD_OF_WIDEBAND_H__	TaskSpecification/TSModifyPasswordOfWideBand.h	7;"	d
+_TS_NEW_PASSWORD_INPUT_H__	TaskSpecification/TSNewPasswordInput.h	7;"	d
+_TS_NON_ONLINE_BUSINESS_H__	TaskSpecification/TSNonOnlineBusiness.h	7;"	d
+_TS_OPENED_BUSINESS_INQUIRY_H__	TaskSpecification/TSOpenedBusinessInquiry.h	7;"	d
+_TS_OPPUGN_PACKAGE_H__	TaskSpecification/Oppugn/TSOppugnPackage.h	7;"	d
+_TS_ORIGINAL_PASSWORD_VERIFICATION_H__	TaskSpecification/TSOriginalPasswordVerification.h	7;"	d
+_TS_OTHER_MEAN_H__	TaskSpecification/TSOtherMean.h	7;"	d
+_TS_OUT_OF_SERVICE_JUDGE_H__	TaskSpecification/TSOutOfServiceJudge.h	7;"	d
+_TS_PASSWORD_DOUBLE_CONFIRM_H__	TaskSpecification/TSPasswordDoubleConfirm.h	7;"	d
+_TS_PRIMARY_MENU_H__	TaskSpecification/TSPrimaryMenu.h	7;"	d
+_TS_RECHARGE_BILL_H__	TaskSpecification/TSRechargeBill.h	7;"	d
+_TS_RECUPERATE_H__	TaskSpecification/TSRecuperate.h	7;"	d
+_TS_REMAINING_TALK_MINUTES_INQUIRY_H__	TaskSpecification/TSRemainingTalkMinutesInquiry.h	7;"	d
+_TS_REMAINING_TRAFFIC_INQUIRY_H__	TaskSpecification/TSRemainingTrafficInquiry.h	7;"	d
+_TS_SEND_MSG_H__	TaskSpecification/TSSendMsg.h	7;"	d
+_TS_SYSTEM_EXCEPTION_H__	TaskSpecification/TSSystemException.h	7;"	d
+_TS_TELEPHONE_PASSWORD_MODIFY_H__	TaskSpecification/TSTelephonePasswordModify.h	7;"	d
+_TS_TELEPHONE_PASSWORD_RESET_H__	TaskSpecification/TSTelephonePasswordReset.h	8;"	d
+_TS_TRASFER_ARTIFICIAL_CONFIRM_H__	TaskSpecification/TSTrasferArtificialConfirm.h	7;"	d
+_TS_TRASFER_ARTIFICIAL_H__	TaskSpecification/TSTrasferArtificial.h	7;"	d
+_TS_TRASFER_IVR_H__	TaskSpecification/TSTrasferIVR.h	7;"	d
+_TS_WELCOME_H__	TaskSpecification/TSWelcome.h	7;"	d

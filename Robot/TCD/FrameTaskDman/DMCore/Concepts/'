@@ -1,0 +1,580 @@
+#include "Concept.h"
+#include "Robot/TCD/FrameTaskDman/DMCore/Agents/DialogAgents/DialogAgent.h"
+#include "Robot/TCD/FrameTaskDman/DMCore/Agents/DialogAgents/DialogAgent.h"
+
+namespace TrioTDM {
+
+CConcept CConcept::NULLConcept("NULL");
+
+CHyp::CHyp() {
+    _hyp_type = ctUnknown;
+    _confidence = 0.0;
+}
+
+CHyp::CHyp(CHyp& hyp) {
+    _hyp_type = hyp._hyp_type;
+    _confidence = hyp._confidence;
+}
+
+CHyp::~CHyp() {
+}
+
+TConceptType CHyp::GetHypType() {
+    return _hyp_type;
+}
+
+float CHyp::GetConfidence() {
+    return _confidence;
+}
+
+CHyp& CHyp::operator = (CHyp& hyp) {
+    if ( &hyp != this) {
+        _hyp_type = hyp._hyp_type;
+        _confidence = hyp._confidence;
+    }
+    return *this;
+}
+
+void CHyp::SetConfidence(float confidence) {
+    _confidence = confidence;
+}
+
+bool CHyp::operator == (CHyp& hyp) {
+    VLOG(WARNING) << "Equality operator called on abstract CHyp.";
+    return false;
+}
+
+bool CHyp::operator < (CHyp& hyp) {
+    VLOG(WARNING) << "Comparsion operator < called on abstract CHyp.";
+    return false;
+}
+
+bool CHyp::operator > (CHyp& hyp) {
+    VLOG(WARNING) << "Comparsion operator > called on abstract CHyp.";
+    return false;
+}
+
+bool CHyp::operator <= (CHyp& hyp) {
+    VLOG(WARNING) << "Comparsion operator <= called on abstract CHyp.";
+    return false;
+}
+
+bool CHyp::operator >= (CHyp& hyp) {
+    VLOG(WARNING) << "Comparsion operator >= called on abstract CHyp.";
+    return false;
+}
+
+CHyp* CHyp::operator [](const std::string& item) {
+    VLOG(WARNING) << "Indexing operator [] called on abstract CHyp.";
+    return NULL;
+}
+
+std::string CHyp::ValueToString() {
+    VLOG(WARNING) << "ValueToString called on abstract CHyp.";
+    return ABSTRACT_CONCEPT;
+}
+
+std::string CHyp::ToString() {
+    VLOG(WARNING) << "ToString called on abstract CHyp.";
+    return ABSTRACT_CONCEPT;
+}
+
+void CHyp::FromString(const std::string& str) {
+    VLOG(WARNING) << "FromString called on abstruct CHyp. Call failed.";
+}
+
+CConcept::CConcept(const std::string& name, TConceptSource concept_source, int cardinality) {
+    _concept_type = ctUnknown;
+    _concept_source = _concept_source;
+    _name = name;
+    _owner_dialog_agent = NULL;
+    _owner_concept = NULL;
+    _grounding_model = NULL;
+    _is_grounded = false;
+    _is_invalidated = false;
+    _is_restored_for_grounding = false;
+    _is_sealed = false;
+    _is_change_notification = true;
+    _num_valid_hyps = 0;
+    _cardinality = cardinality;
+    _turn_last_updated = -1;
+    _conveyance = cNotConveyed;
+    _is_waiting_conveyance = false;
+    _prev_concept = NULL;
+    _is_history_concept = false;
+    _explictly_confirmed_hyp = "";
+    _explicitly_disconfirmed_hyp = "";
+}
+
+CConcept::~CConcept() {
+    if ( _prev_concept != NULL ) {
+        delete _prev_concept;
+    }
+    _prev_concept = NULL;
+
+    if ( _grounding_model != NULL ) {
+        _grounding_manager->RemoveConceptGroundingRequest(this);
+        delete _grounding_model;
+    }
+    _grounding_model = NULL;
+
+    if ( _is_waiting_conveyance ) { ClearWaitingConveyance(); }
+    ClearConceptNotificationPointer();
+}
+
+CConcept& CConcept::operator = (CConcept& concept) {
+    if ( &concept != this ) {
+        Update(CU_ASSIGN_FROM_CONCEPT, &concept);
+    }
+    return *this;
+}
+
+CConcept& CConcept::operator = (int value) {
+    VLOG(WARNING) << "Assignment operator from integer to " << _name << ConceptTypeAsString[ctConceptType].c_str();
+
+    return NULLConcept;
+}
+
+CConcept& CConcept::operator = (bool value) {
+    VLOG(WARNING) << "Assignment operator from bool to " << _name << ConceptTypeAsString[ctConceptType].c_str();
+    return NULLConcept;
+}
+
+CConcept& CConcept::operator = (float value) {
+    VLOG(WARNING) << "Assignment operator from float to " << _name << ConceptTypeAsString[ctConceptType].c_str();
+    return NULLConcept;
+}
+
+CConcept& CConcept::operator = (double value) {
+    VLOG(WARNING) << "Assignment operator from double to " << _name << ConceptTypeAsString[ctConceptType].c_str();
+    return NULLConcept;
+}
+
+CConcept& CConcept::operator = (const std::string& value) {
+    Update(CU_ASSIGN_FROM_STRING, &value);
+    return *this;
+}
+
+CConcept& CConcept::operator = (const char* value) {
+    return operator=((std::string)value);
+}
+
+bool CConcept::operator == (CConcept& concept) {
+    CHyp* top_hyp_1 = GetTopHyp();
+    CHyp* top_hyp_2 = concept.GetTopHyp();
+
+    if ( (top_hyp_1 == NULL) && (top_hyp_2 == NULL) ) {
+        return true;
+    } else if ( (top_hyp_1 == NULL) || (top_hyp_2 == NULL) ) {
+        return false;
+    }
+    return *top_hyp_1 == *top_hyp_2;
+}
+
+bool CConcept::operator != (CConcept& concept) {
+    return !operator==(concept);
+}
+
+bool CConcept::operator < (CConcept& concept) {
+    CHyp* top_hyp_1 = GetTopHyp();
+    if ( top_hyp_1 == NULL ) { return false; }
+    CHyp* top_hyp_2 = concept.GetTopHyp();
+    if ( top_hyp_2 == NULL ) { return false; }
+    return *top_hyp_1 < top_hyp_2;
+}
+
+bool CConcept::operator > (CConcept& concept) {
+    CHyp* top_hyp_1 = GetTopHyp();
+    if ( top_hyp_1 == NULL ) { return false; }
+    CHyp* top_hyp_2 = concept.GetTopHyp();
+    if ( top_hyp_2 == NULL ) { return false; }
+    return *top_hyp_1 > top_hyp_2;
+}
+
+bool CConcept::operator <= (CConcept& concept) {
+    CHyp* top_hyp_1 = GetTopHyp();
+    if ( top_hyp_1 == NULL ) { return false; }
+    CHyp* top_hyp_2 = concept.GetTopHyp();
+    if ( top_hyp_2 == NULL ) { return false; }
+    return *top_hyp_1 <= top_hyp_2;
+}
+
+bool CConcept::operator >= (CConcept& concept) {
+    CHyp* top_hyp_1 = GetTopHyp();
+    if ( top_hyp_1 == NULL ) { return false; }
+    CHyp* top_hyp_2 = concept.GetTopHyp();
+    if ( top_hyp_2 == NULL ) { return false; }
+    return *top_hyp_1 >= top_hyp_2;
+}
+
+CConcept& CConcept::operator [](int index) {
+    if ( index == 0 ) {
+        return *this;
+    }
+    if ( (index < 0 ) && (_prev_concept != NULL) ) {
+        if ( index == -1 ) {
+            return *_prev_concept;
+        } else {
+            return _prev_concept->operator [](index + 1);
+        }
+    } else {
+        VLOG(WARNING) < "Indexing operator " << index << " on " << _name << " atomic " << ConceptTypeAsString[ctConceptType] << " failed.";
+        return NULLConcept;
+    }
+}
+
+CConcept& CConcept::operator [](const std::string& index) {
+    if ( index.empty() ) {
+        return *this;
+    } else {
+        std::string first_index, follow_up;
+        SplitOnFirst(index, ".", first_index, follow_up);
+        int n_first_index;
+        if ( sscanf(first_index.c_str(), "%d", &n_first_index) != -1 ) {
+            VLOG(WARNING) << "Indexing operator " << index << "on " << _name << " atomic " << ConceptTypeAsString[ctConceptType] << "failed.";
+            return NULLConcept;
+        } else {
+            CConcept *concept = &(operator[](n_first_index));
+            if ( follow_up.empty() ) {
+                return concept;
+            } else {
+                return concept->operator[](follow_up);
+            }
+        }
+    }
+}
+
+
+CConcept& CConcept::operator [](const char* index) {
+    return operator[]((std::string)index);
+}
+
+CConcept::operator int() {
+    VLOG(WARNING) << "Integer cast operator on " << _name << ConceptTypeAsString[ctConceptType] << " type concept failed.";
+    return 0;
+}
+
+CConcept::operator float() {
+    VLOG(WARNING) << "Float cast operator on " << _name << ConceptTypeAsString[ctConceptType] << " type concept failed.";
+    return 0.0;
+}
+
+CConcept::operator bool() {
+    VLOG(WARNING) << "Bool cast operator on " << _name << ConceptTypeAsString[ctConceptType] << " type concept failed.";
+    return false;
+}
+
+CConcept::operator std::string() {
+    return Trim(GroundedHypToString());
+}
+
+void CConcept::Clear() {
+    if ( _is_history_concept ) {
+        VLOG(WARNING) << "Cannot perform Clear on concept " << _name << " history.";
+    }
+    std::string initial_value;
+    if ( _grounding_model ) {
+        initial_value = TrimRight()HypSetToString();
+    }
+    if ( _prev_concept != NULL ) {
+        delete _prev_concept;
+        _prev_concept = NULL;
+    }
+
+    ClearCurrentHypSet();
+    _explictly_confirmed_hyp = "";
+    _explicitly_disconfirmed_hyp = "";
+}
+
+void CConcept::ClearCurrentValue() {
+    std::string initial_value;
+    if ( _grounding_model ) {
+        initial_value = TrimRight( HypSetToString() );
+    }
+    ClearCurrentHypSet();
+}
+
+CConcept* CConcept::Clone( bool clone_history) {
+    CConcept* concept = EmptyClone();
+
+    concept->SetConceptType(ctConceptType);
+    concept->SetConceptSource(csConceptSource);
+    concept->_name = _name;
+    concept->_owner_dialog_agent = _owner_dialog_agent;
+    concept->SetOwnerConcept(_owner_concept);
+    concept->_grounding_model = NULL;
+    concept->_is_sealed = _is_sealed;
+    concept->DisableChangeNotification();
+    concept->CopyCurrentHypSetFrom(*this);
+    concept->SetGroundedFlag(_is_grounded);
+    concept->SetInvalidatedFlag(_is_invalidated);
+
+    if ( clone_history ) {
+        concept->SetRestoredForGroundingFlag(_is_restored_for_grounding);
+    } else {
+        concept->SetRestoredForGroundingFlag(false);
+    }
+    concept->_cardinality = _cardinality;
+    concept->SetTurnLastUpdated(_turn_last_updated);
+    concept->_conveyance = _conveyance;
+    concept->_is_waiting_conveyance = false;
+    concept->SetHistoryConcept(_is_history_concept);
+    if ( clone_history && (_prev_concept != NULL) ) {
+        concept->_prev_concept = _prev_concept->Clone();
+    } else {
+        concept->_prev_concept = NULL;
+    }
+
+    concept->_explictly_confirmed_hyp = _explictly_confirmed_hyp;
+    concept->_explicitly_disconfirmed_hyp = _explicitly_disconfirmed_hyp;
+
+    return concept;
+}
+
+CConcept* CConcept::EmptyClone() {
+    return new CConcept;
+}
+
+void CConcept::Update(const std::string& update_type, void* update_data) {
+    std::string initial_value;
+    std::string initial_partial_value;
+    if ( _grounding_model ) {
+        initial_value = TrimRight(HypSetToString());
+    }
+    std::string belief_udating_model_name = _grounding_model->GetBeliefUpdatingModelName();
+    if ( belief_udating_model_name == "npu" ) {
+        if ( update_type == CU_ASSIGN_FROM_STRING ) {
+            Update_NPU_AssignFromString(update_data);
+        } else if ( update_type == CU_ASSIGN_FROM_CONCEPT ) {
+            Update_NPU_AssignFromConcept(update_data);
+        } else if ( update_type == CU_UPDATE_WITH_CONCEPT ) {
+            Update_NPU_UpdateWithConcept(update_data);
+        } else if ( update_type == CU_COLLAPSE_TO_MODE ) {
+            Update_NPU_CollapseToMode(update_data);
+        } else if ( update_type == CU_PARTIAL_FROM_STRING ) {
+            Update_PartialFromString(update_data);
+        } else {
+            VLOG(WARNING) << "UnKnown update type " << update_type " in updating concept " << GetAgentQualifiedName();
+        }
+        if ( update_type != CU_PARTIAL_FROM_STRING ) {
+            ClearPartialHypSet();
+        }
+    } else if ( belief_udating_model_name = "calista" ) {
+        if ( update_type == CU_ASSIGN_FROM_STRING ) {
+            Update_Calista_AssignFromString(update_data);
+        } else if ( update_type == CU_ASSIGN_FROM_CONCEPT ) {
+            Update_Calista_AssignFromConcept(update_data);
+        } else if ( update_type == CU_UPDATE_WITH_CONCEPT ) {
+            Update_Calista_UpdateWithConcept(update_data);
+        } else if ( update_type == CU_COLLAPSE_TO_MODE ) {
+            Update_Calista_CollapseToMode(update_data);
+        } else {
+            VLOG(WARNING) << "UnKnown update type " << update_type << " in  updating concept " << GetAgentQualifiedName();
+        }
+    }
+}
+
+// TODO
+void CConcept::Update_NPU_AssignFromString(void* update_data) {
+}
+
+// TODO
+void CConcept::Update_NPU_AssignFromConcept(void* update_data) {
+}
+
+// TODO
+void CConcept::Update_NPU_UpdateWithConcept(void* update_data) {
+}
+
+// TODO
+void CConcept::Update_NPU_CollapseToMode(void* update_data) {
+}
+
+// TODO
+void CConcept::Update_PartialFromString(void* update_data) {
+}
+
+void CConcept::Update_Calista_AssignFromString(void* update_data) {
+    Update_NPU_AssignFromConcept(update_data);
+}
+
+// TODO
+void CConcept::Update_Calista_UpdateWithConcept(void* update_data) {
+}
+
+// TODO
+void CConcept::Update_Calista_CollapseToMode(void* update_data) {
+}
+
+bool CConcept::IsUpdated() {
+    return GetNumValidHyps() > 0;
+}
+
+bool CConcept::IsUpdatedAndGrounded() {
+    return IsUpdated() && IsGrounded();
+}
+
+bool CConcept::IsAvailable() {
+    if ( IsUpdated() ) {
+        return true;
+    }
+    if ( _prev_concept ) {
+        return _prev_concept->IsAvailable();
+    } else {
+        return false;
+    }
+}
+
+bool CConcept::IsAvailableAndGrounded() {
+    if ( IsUpdatedAndGrounded() ) {
+        return true;
+    }
+    if ( _prev_concept ) {
+        return _prev_concept->IsAvailableAndGrounded();
+    } else {
+        return false;
+    }
+}
+
+bool CConcept::IsGrounded() {
+    if ( _is_history_concept ) { return true; }
+
+    if ( _grounding_model == NULL ) {
+        if ( _owner_concept != NULL ) {
+            return _owner_concept->IsGrounded();
+        } else {
+            return true;
+        }
+    } else {
+        _is_grounded;
+    }
+}
+
+bool CConcept::HasPartialUpdate() {
+    return _partial_hyps.size() > 0;
+}
+
+bool CConcept::IsUndergoingGrounding() {
+    if ( _grounding_model ) {
+        return _grounding_manager->GroundingInProgressOnConcept(this);
+    } else {
+        return false;
+    }
+}
+
+bool CConcept::IsInvalidated() {
+    return GetInvalidatedFlag();
+}
+
+bool CConcept::IsRestoredForGrounding() {
+    return GetRestoredForGroundingFlag();
+}
+
+std::string CConcept::GroundedHypToString() {
+    if ( IsUpdatedAndGrounded() ) {
+        return TopHypToString();
+    } else {
+        return IsInvalidated() ? INVALIDATED_CONCEPT : UNDEFINED_CONCEPT;
+    }
+}
+
+std::string CConcept::TopHypToString() {
+    if ( IsUpdated() ) {
+        return GetTopHyp()->ValueToString() + "\n";
+    } else {
+        return IsInvalidated() ? INVALIDATED_CONCEPT : UNDEFINED_CONCEPT;
+    }
+}
+
+// TODO
+std::string CConcept::HypSetToString() {
+}
+
+TConceptType CConcept::GetConceptType() {
+    return ctConceptType;
+}
+
+void CConcept::SetConceptType(TConceptType concept_type) {
+    _concept_type = concept_type;
+}
+
+TConceptSource CConcept::GetConceptSource() {
+    return csConceptSource;
+}
+
+void CConcept::SetConceptSource(TConceptSource concept_source ) {
+    _concept_source = concept_source;
+}
+
+void CConcept::SetName(const std::string& name) {
+    _name = name;
+}
+
+std::string CConcept::GetName() {
+    return _name;
+}
+
+std::string CConcept::GetSmallName() {
+    std::string foo, small_name;
+    SplitOnLast(_name, ".", foo, small_name);
+    return small_name;
+}
+
+std::string CConcept::GetAgentQualifiedName() {
+    if ( _owner_dialog_agent != NULL ) {
+        return FormatString("%s/%s", _owner_dialog_agent->GetName().c_str(), GetName().c_str());
+    } else {
+        return GetName();
+    }
+}
+
+void CConcept::SetOwnerDialogAgent(CDialogAgent* dialog_agent) {
+    _owner_dialog_agent = dialog_agent;
+}
+
+CDialogAgent* CConcept::GetOwnerDialogAgent() {
+    return _owner_dialog_agent;
+}
+
+void CConcept::SetOwnerConcept(CConcept* concept) {
+    _owner_concept = concept;
+    if ( _prev_concept ) {
+        _prev_concept->SetOwnerConcept(concept);
+    }
+}
+
+CConcept* CConcept::GetOwnerConcept() {
+    return _owner_concept;
+}
+
+// TODO
+void CConcept::CreateGroundingModle(const std::string& grounding_model_spec) {
+}
+
+// TODO
+CGMCocept* CConcept::GetGroundingModel() {
+}
+
+bool CConcept::GetGroundedFlag() {
+    return _is_grounded;
+}
+
+void CConcept::DeclareGroundingModels(
+        TGroundingModelPointersVector& models,
+        TGroundingModelPointersSet& exclude) {
+    if ( _grounding_model &&
+            exclude.find(_grounding_model) == exclude.end() ) {
+        models.push_back(_grounding_model);
+        exclude.insert(_grounding_model);
+    }
+}
+
+void CConcept::DeclareConcepts(TConceptPointersVector& concepts,
+        TConceptPointersSet& exclude) {
+    if ( exclude.find(this) == exclude.end() ) {
+        concepts.push_back(this);
+        exclude.insert(this);
+    }
+}
+
+}

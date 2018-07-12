@@ -1,0 +1,2 @@
+[1;33;40mWARNING: Logging before InitGoogleLogging() is written to STDERR
+[0mI1207 16:35:12.830312 185571 query_autocomplete/src/query_autocomplete.cc:100] query autocomplete success.
