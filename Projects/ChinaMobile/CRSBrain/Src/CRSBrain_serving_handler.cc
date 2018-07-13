@@ -130,6 +130,7 @@ void CRSBrainServingHandler::CRSBrainProcess(ChinaMobileBundle &response, const 
     //ASR Control
     else if (request.inaction == 9)
     {
+        // 输入为语音识别结果
         if (request.inparams.flow_result_type == "1")
         {
             if(request.inparams.input != "" && request.inparams.input != "Hangup" && request.inparams.input != "timeout" && request.inparams.input != "sys_err" && request.inparams.input != "playover" && request.inparams.input != "nomatch")
@@ -157,6 +158,7 @@ void CRSBrainServingHandler::CRSBrainProcess(ChinaMobileBundle &response, const 
                         CRSRequest.__set_NLUResult(NLUResponse.NLUResult);
                     }
                 }
+                // 从redis中获取语音转写的文本内容，然后调用NLU进行解析，并将NLU解析结果写入到request的NLUResult中
                 else if(RedisOperator_Get(ASRResultKey, ASRResultValue) && !FLAGS_IsFakeASR)
                 {
                     VLOG(4) << "Real ASR";
@@ -199,6 +201,7 @@ void CRSBrainServingHandler::CRSBrainProcess(ChinaMobileBundle &response, const 
                 CRSRequest.__set_NLUResult(FLAGS_nomatch_response);
             }
         }
+        // 输入为按键输入
         else if (request.inparams.flow_result_type == "2")
         {
             VLOG(4) << "flow_result_type is 2";
@@ -214,6 +217,7 @@ void CRSBrainServingHandler::CRSBrainProcess(ChinaMobileBundle &response, const 
                 CRSRequest.__set_NLUResult("[dtmf]=" + request.inparams.input);
             }
         }
+        // 3 正常无输入，-1 其他
         else if (request.inparams.flow_result_type == "3" || request.inparams.flow_result_type == "-1")
         {
             VLOG(4) << "flow_result_type is " << request.inparams.flow_result_type;

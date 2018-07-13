@@ -11,6 +11,9 @@
 
 namespace TrioTDM {
 
+/*
+ * CGainConceptApi封装一个ChinaMobileSession对象，并提供对外调用接口
+ */
 class CGainConceptApi {
 
 public:

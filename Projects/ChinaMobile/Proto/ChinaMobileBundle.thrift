@@ -11,10 +11,10 @@ struct InParams {
     4: optional string call_dst_id; // 被叫号码
     5: optional string flow;
     6: optional string auth_token; // 受权信息
-    7: optional string entrance_id;
+    7: optional string entrance_id; //导航入口，电话进入导航的方式
     8: optional string start_time;
     9: optional string ses_time;
-    10: optional string suilu_region_id;
+    10: optional string suilu_region_id; // 呼入地
     11: optional string cc_id;
     12: optional string role_label;
 
@@ -22,8 +22,8 @@ struct InParams {
     13: optional string begin_play; // 放音开始时间
     14: optional string end_play; // 放音结束时间
     15: optional string result_time; // 获取结果时间
-    16: optional string flow_result_type; // 结果类型
-    17: optional string input;
+    16: optional string flow_result_type; // 结果类型，识别输入、按键输入、正常无输入
+    17: optional string input; // 交互结果
     //当上一轮对话模板前三位为100时，即只放音不识别时，有4种可能：1-hangup  2-timeout  3-sys_err  4-playover
     //当上一轮对话模板前三位为110时，即放音+语音识别时，有5种可能：1-hangup  2-timeout 3-nomatch 4-<结果> 5-sys_err
     //当上一轮对话模板前三位为101时，即放音+按键识别时，有4种可能：1-hangup  2-timeout  3-sys_err  4-按键的结果

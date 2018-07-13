@@ -110,6 +110,11 @@ struct FourGAndNetInfo
     }
 };
 
+/*
+ * ChinaMobileSession用于保存一个唯一的对话
+ * 每个对话有唯一的_sessionId进行标识
+ * session的中间状态保存在redis中
+ */
 class ChinaMobileSession
 {
 public:
@@ -122,8 +127,14 @@ public:
 
     bool Init(string IVRSessionId, string IVRTelephoneNumber); //初始化Session对象
     bool Init(const ChinaMobileBundle &request); //通过request初始化Session对象
+    
+    // 将当前session相关信息保存到redis中
+    // redis key为_sessionId，value为成员变量构成的json序列化string
     bool Save(); //保持到redis数据库
+
+    //从redis中获取当前session保存的信息，反序列化后赋值成员变量
     bool Load(const std::string& inter_idx); //从redis读取
+
     bool GetTelephoneNumber(string &telephoneNumber); // 获取当前手机号
 
     // 查询余额
